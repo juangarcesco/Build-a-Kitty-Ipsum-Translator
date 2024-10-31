@@ -201,10 +201,11 @@ desplega el texto del archivo
 
 `wc kitty_ipsum_1.txt`
 wc (word count) sirve para contar el número de líneas, palabras y caracteres en un archivo. 
+wc -lwmc kitty_ipsum_1.txt
 
 **ouput:**
 27  332 1744 kitty_ipsum_1.txt
-
+Este comando mostrará todas las métricas para kitty_ipsum_1.txt: líneas, palabras, caracteres y bytes.
 lineas palabras bytes nombre_archivo
 
 **Notas:**
@@ -224,57 +225,69 @@ wc --  sirve para contar elementos específicos en un archivo como: Número de l
 `wc -l kitty_ipsum_1.txt `
 l: Número de líneas
 
-42. The file has 27 lines. Check how many words are in the file.
+**42. The file has 27 lines. Check how many words are in the file.**
 
 wc -w kitty_ipsum_1.txt
 Número de palabras (-w)
 
-43. 332 words are in the kitty_ipsum_1.txt file. Lastly, check how many characters it has.
+**43. 332 words are in the kitty_ipsum_1.txt file. Lastly, check how many characters it has.**
 
 wc -m kitty_ipsum_1.txt
+-m numero de caracteres
 
-44. Use the command without any flags to see if the numbers are the same.
+**44. Use the command without any flags to see if the numbers are the same.**
 
 wc kitty_ipsum_1.txt
+muestra todo
 
-45. That shows the byte count instead of the character count. Some characters must be more than one byte. Use cat to pipe the content of the file as the input of the wc command to see if the output is the same.
+**45. That shows the byte count instead of the character count. Some characters must be more than one byte. Use cat to pipe the content of the file as the input of the wc command to see if the output is the same.**
 
 cat kitty_ipsum_1.txt | wc
 
-46. It looks like the way you give input to a command may affect the output. It only printed the numbers that time and not the filename. Try using redirection as the input with the same file and command to see what that outputs.
+**46. It looks like the way you give input to a command may affect the output. It only printed the numbers that time and not the filename. Try using redirection as the input with the same file and command to see what that outputs.**
 
 wc < kitty_ipsum_1.txt
 
-47. No filename again with fewer spaces that time. You may have to play with certain commands to get the output you are looking for. You are going to create a file that has some meta information about the two kitty ipsum files in it. Use echo and redirection to print ~~ kitty_ipsum_1.txt info ~~ to a file named kitty_info.txt. Make sure to place the text in quotes.
+**47. No filename again with fewer spaces that time. You may have to play with certain commands to get the output you are looking for. You are going to create a file that has some meta information about the two kitty ipsum files in it. Use echo and redirection to print ~~ kitty_ipsum_1.txt info ~~ to a file named kitty_info.txt. Make sure to place the text in quotes.**
 
-echo "~~ kitty_ipsum_1.txt info ~~" > kitty_info.txt
+`echo "~~ kitty_ipsum_1.txt info ~~" > kitty_info.txt`
+crea el archivo kitty_info.txt e imprime ~~ kitty_ipsum_1.txt info ~~
 
-48. Open the file so you can keep track of what's in it. Use echo and the -e flag with the new line character (\n) to append Number of lines: to the kitty_info.txt file. Add the new line character at the beginning of the text so there's an empty line. Remember that you can append output to a file with >>.
+**48. Open the file so you can keep track of what's in it. Use echo and the -e flag with the new line character (\n) to append Number of lines: to the kitty_info.txt file. Add the new line character at the beginning of the text so there's an empty line. Remember that you can append output to a file with >>.**
 
-echo -e "\nNumber of lines:" >> kitty_info.txt
+`echo -e "\nNumber of lines:" >> kitty_info.txt`
 
-49. You should be able to find out how many lines are in the kitty_ipsum_1.txt file and add that number to the kitty_info.txt file. Use the cat command to pipe the content of kitty_ipsum_1.txt as input for the wc command. Use the flag for getting the number of lines from that input and append the number to the kitty_info.txt file. Tip: enter the command without appending to see if it's working first.
+Este comando agrega el texto Number of lines: en una nueva línea al final del archivo kitty_info.txt.
 
-cat kitty_ipsum_1.txt | wc -l >> kitty_info.txt
+**49. You should be able to find out how many lines are in the kitty_ipsum_1.txt file and add that number to the kitty_info.txt file. Use the cat command to pipe the content of kitty_ipsum_1.txt as input for the wc command. Use the flag for getting the number of lines from that input and append the number to the kitty_info.txt file. Tip: enter the command without appending to see if it's working first.**
 
-50. Next, you want to put a word count of the file in the info. Use echo again to append Number of words: to kitty_info.txt. Put a new line in front of the text like you did for the first one.
+`cat kitty_ipsum_1.txt | wc -l >> kitty_info.txt`
 
-echo -e "\nNumber of words:" >> kitty_info.txt
+Muestra el contenido del archivo kitty_ipsum_1.txt, con | (pipe) Redirige la salida de cat hacia el siguiente comando, wc -l, el cual Cuenta el número de líneas en el contenido recibido, lo imprime,  añadiéndolo al final del archivo sin sobrescribir su contenido.
 
-51. Use cat and the pipe method again to append the number of words in kitty_ipsum_1.txt to kitty_info.txt.
+**50. Next, you want to put a word count of the file in the info. Use echo again to append Number of words: to kitty_info.txt. Put a new line in front of the text like you did for the first one.**
 
-cat kitty_ipsum_1.txt | wc -w >> kitty_info.txt
+`echo -e "\nNumber of words:" >> kitty_info.txt`
 
-52.  Next, you want to add the number of characters. Use the echo command with redirection to append Number of characters:, with a new line in front of it, to kitty_info.txt like you did with the other sentences.
+imprime la palabra Number of words: en el archivo  kitty_info.txt
 
-echo -e "\nNumber of characters:" >> kitty_info.txt
+**51. Use cat and the pipe method again to append the number of words in kitty_ipsum_1.txt to kitty_info.txt.**
 
-53. Append the number of characters in kitty_ipsum_1.txt to kitty_info.txt. Use the redirection method as the input for the wc command this time instead of the piping method.
+`cat kitty_ipsum_1.txt | wc -w >> kitty_info.txt`
 
-wc -m < kitty_ipsum_1.txt >> kitty_info.txt
+imprime el numero de palabras en el archivo kitty_ipsum_1.txt
+
+**52.  Next, you want to add the number of characters. Use the echo command with redirection to append Number of characters:, with a new line in front of it, to kitty_info.txt like you did with the other sentences.**
+
+`echo -e "\nNumber of characters:" >> kitty_info.txt`
+
+**53. Append the number of characters in kitty_ipsum_1.txt to kitty_info.txt. Use the redirection method as the input for the wc command this time instead of the piping method.**
+
+`wc -m < kitty_ipsum_1.txt >> kitty_info.txt`
+
+-------------------------------------------------------------------------------------------------------------------------
 
 54. grep is a command for searching for patterns in text. You can use it like this: grep '<pattern>' <filename>. Use it to search for the pattern meow in the kitty_ipsum_1.txt file.
-
 grep 'meow' kitty_ipsum_1.txt
 
 55. It showed you all the lines that contain meow somewhere in them, but it’s a little messy. View the manual of grep to see if you can find anything to help.
