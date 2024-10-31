@@ -3,6 +3,8 @@
 `echo hello bash`
 Abrir nuevo terrminal bash y escribir 
 
+------------------------------------------------------------------------------------------------------------------
+
 **2. The command you just entered printed to the terminal. You can redirect that output to a file using >. Here’s an example: <command> > <filename>. Enter the same command but redirect the output into stdout.txt.**
 
 `echo hello bash > stdout.txt`
@@ -25,6 +27,8 @@ escribe la palabra de nuevo borrando todo
 
 `> stdout.txt` 
 borra todo
+
+------------------------------------------------------------------------------------------------------------------
 
 **6. Next, enter bad_command in the terminal to see what happens. You will get an error.**
 
@@ -91,6 +95,8 @@ Imprime la cadena "Juan" en la terminaL y toma esa salida y la asigna a la varia
 `echo $NAME`
 imprime la variabla name que en este caso es Juan
 
+------------------------------------------------------------------------------------------------------------------
+
 **19. It worked, but it doesn't look like it. When you used the pipe (|) to set the input for read, it ran the command in a subshell or subprocess. Basically, another terminal instance within the one you see. The variable was set in there and didn't affect the one you had previously set. cat is another command that takes input. Enter it in the terminal.**
 
 `cat`
@@ -121,6 +127,8 @@ Lee lo que esta en el archivo name.txt
 
 `echo Juan | cat`
 Muestra la palabra "Juan" en la pantalla dos veces. La primera vez porque echo la imprime directamente, y la segunda vez porque cat la recibe y la vuelve a imprimir.
+
+------------------------------------------------------------------------------------------------------------------
 
 **24. You should be starting to get the hang of how stdin, stdout, and stderr work but let's try another example with your own command. Use touch to create a file named script.sh.**
 
@@ -197,6 +205,8 @@ desplega el texto del archivo
 
 desplega el texto del archivo
 
+------------------------------------------------------------------------------------------------------------------
+
 **39. You will write a small script to translate both of them into doggy ipsum. For now, you will learn some commands to figure out how. The first one is wc. It prints some info about a file. It can take a file as an argument like the cat command. Use it to see what it shows you about your kitty_ipsum_1.txt file.**
 
 `wc kitty_ipsum_1.txt`
@@ -248,6 +258,8 @@ cat kitty_ipsum_1.txt | wc
 
 wc < kitty_ipsum_1.txt
 
+------------------------------------------------------------------------------------------------------------------
+
 **47. No filename again with fewer spaces that time. You may have to play with certain commands to get the output you are looking for. You are going to create a file that has some meta information about the two kitty ipsum files in it. Use echo and redirection to print ~~ kitty_ipsum_1.txt info ~~ to a file named kitty_info.txt. Make sure to place the text in quotes.**
 
 `echo "~~ kitty_ipsum_1.txt info ~~" > kitty_info.txt`
@@ -287,12 +299,20 @@ imprime el numero de palabras en el archivo kitty_ipsum_1.txt
 
 -------------------------------------------------------------------------------------------------------------------------
 
-54. grep is a command for searching for patterns in text. You can use it like this: grep '<pattern>' <filename>. Use it to search for the pattern meow in the kitty_ipsum_1.txt file.
+**54. grep is a command for searching for patterns in text. You can use it like this: grep '<pattern>' <filename>. Use it to search for the pattern meow in the kitty_ipsum_1.txt file.**
 grep 'meow' kitty_ipsum_1.txt
 
-55. It showed you all the lines that contain meow somewhere in them, but it’s a little messy. View the manual of grep to see if you can find anything to help.
+`grep 'meow' kitty_ipsum_1.txt`
 
-man grep
+**Notas:**
+grep: Es el comando para buscar texto en archivos.
+'meow': Es el término de búsqueda; en este caso, busca la palabra o cadena "meow".
+kitty_ipsum_1.txt: Es el archivo donde se realiza la búsqueda.
+
+
+**55. It showed you all the lines that contain meow somewhere in them, but it’s a little messy. View the manual of grep to see if you can find anything to help.**
+
+`man grep`
 
 56. That's a lot of options. Use grep to search for the meow pattern in the same file, but add that --color flag to see if it's a little more helpful.
 
