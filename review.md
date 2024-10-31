@@ -91,102 +91,143 @@ Imprime la cadena "Juan" en la terminaL y toma esa salida y la asigna a la varia
 `echo $NAME`
 imprime la variabla name que en este caso es Juan
 
-19. It worked, but it doesn't look like it. When you used the pipe (|) to set the input for read, it ran the command in a subshell or subprocess. Basically, another terminal instance within the one you see. The variable was set in there and didn't affect the one you had previously set. cat is another command that takes input. Enter it in the terminal.
+**19. It worked, but it doesn't look like it. When you used the pipe (|) to set the input for read, it ran the command in a subshell or subprocess. Basically, another terminal instance within the one you see. The variable was set in there and didn't affect the one you had previously set. cat is another command that takes input. Enter it in the terminal.**
 
-cat
+`cat`
 
-20. cat will print the contents of a file or input to stdout. You didn't specify any input for the command. Feel free to type something and press enter. When you are done, press control+c to finish the command.
+**Notas:**
+**Funciones:** Visualizar el contenido de un archivo, Concatenar varios archivos, Crear un archivo rápidamente, 
+**Adicionales:** -n: Numera las líneas del archivo.
+-s: Suprime las líneas en blanco repetidas.
+-b: Numera las líneas no vacías.
 
-control+c
+**20. cat will print the contents of a file or input to stdout. You didn't specify any input for the command. Feel free to type something and press enter. When you are done, press control+c to finish the command.**
 
-21. cat can take a filename as an argument. Use it again with your name.txt file as an arguement to print the contents of the file.
+`control`+`c`
+finaliza el comando
 
-cat name.txt
+**21. cat can take a filename as an argument. Use it again with your name.txt file as an arguement to print the contents of the file.**
 
-22. Enter the same command but use redirection to set the stdin to name.txt
+`cat name.txt`
+Lee lo que esta en el archivo name.txt
 
-cat < name.txt
+**22. Enter the same command but use redirection to set the stdin to name.txt**
 
-23. Use echo to print your name and pipe the output into the cat command.
+`cat < name.txt`
+**Notas:
+<: Este símbolo se llama "redireccionamiento de entrada". Lo que hace es tomar el contenido del archivo a su derecha (en este caso, name.txt) y lo "alimenta" al comando que está a su izquierda (cat).
 
-echo Juan | cat
+**23. Use echo to print your name and pipe the output into the cat command.**
 
-24. You should be starting to get the hang of how stdin, stdout, and stderr work but let's try another example with your own command. Use touch to create a file named script.sh.
+`echo Juan | cat`
+Muestra la palabra "Juan" en la pantalla dos veces. La primera vez porque echo la imprime directamente, y la segunda vez porque cat la recibe y la vuelve a imprimir.
+
+**24. You should be starting to get the hang of how stdin, stdout, and stderr work but let's try another example with your own command. Use touch to create a file named script.sh.**
 
 touch script.sh
+crea el archivo 
 
-25. Give your new script executable permissions with the chmod command and the +x flag.
+**25. Give your new script executable permissions with the chmod command and the +x flag.**
 
-chmod +x script.sh
+`chmod +x script.sh`
+da permisos
 
-26. This will be a very simple script with only a few commands. At the top of file, add a shebang that looks like this: #!/bin/bash.
+**26. This will be a very simple script with only a few commands. At the top of file, add a shebang that looks like this: #!/bin/bash.**
 
-#!/bin/bash
+`#!/bin/bash`
 
-27. Below the shebang, add a read command that reads input into a NAME variable.
+**Notas:**
+Su función principal es indicar al sistema operativo qué programa (o intérprete) debe utilizar para ejecutar el código que viene a continuación.
 
-read NAME
+**27. Below the shebang, add a read command that reads input into a NAME variable.**
+`read NAME`
 
-28. Below that, use echo to print Hello <name> using the variable.
+**28. Below that, use echo to print Hello <name> using the variable.**
 
-echo Hello $NAME
+`echo Hello $NAME`
 
-29. One more thing. Add bad_command at the bottom of the file.
+**29. One more thing. Add bad_command at the bottom of the file.** 
 
 bad_command
 
-30. Your script takes input from stdin and will output to stdout and stderr. Run your script and don't input anything for now.
+**30. Your script takes input from stdin and will output to stdout and stderr. Run your script and don't input anything for now.**
 
+./script.sh
 Juan
 
-31. You input your name, and your script output the result of the two commands. Run the script again, but use a pipe to echo your name as the input.
+**31. You input your name, and your script output the result of the two commands. Run the script again, but use a pipe to echo your name as the input.**
 
 echo Juan | ./script.sh
 
-32. It didn't ask for input this time because you gave it input with the pipe. The two types of output were printed in the terminal. Run the same command but redirect stderr output to the stderr.txt
+**32. It didn't ask for input this time because you gave it input with the pipe. The two types of output were printed in the terminal. Run the same command but redirect stderr output to the stderr.txt**
 
-echo Juan | ./script.sh 2> stderr.txt
+`echo Juan | ./script.sh 2> stderr.txt`
 
-33. Again, it didn't ask for input. This time it only printed your name to the terminal and not the output of bad_command. That produced an error, which you redirected to stderr.txt. Take a look at that file. You can redirect both the stderr and stdout by adding another redirection at the end like this: > <filename>. Enter the same command, redirect the stderr to the same place again, and the stdout to stdout.txt. 
+Aqui imprime juan en la variable y el errro de bad command lo pone en el archivo stderr.txt de manera q la salida sale limpia
 
-echo Juan | ./script.sh 2> stderr.txt > stdout.txt
+**33. Again, it didn't ask for input. This time it only printed your name to the terminal and not the output of bad_command. That produced an error, which you redirected to stderr.txt. Take a look at that file. You can redirect both the stderr and stdout by adding another redirection at the end like this: > <filename>. Enter the same command, redirect the stderr to the same place again, and the stdout to stdout.txt.**
+
+`echo Juan | ./script.sh 2> stderr.txt > stdout.txt`
+
+Aqui imprime juan en la variable y el error de bad command lo pone en el archivo stderr.txt de manera q la salida sale limpia y6 ademas envia la impresion al archivo stdout.txt
 
 
-34. It didn't ask for input and nothing was printed in the terminal that time. You redirected both outputs to files. You should take a look at them to see if they have what you expected. Run your script again, use redirection to set name.txt as the input. Don't redirect any of the output.
+**34. It didn't ask for input and nothing was printed in the terminal that time. You redirected both outputs to files. You should take a look at them to see if they have what you expected. Run your script again, use redirection to set name.txt as the input. Don't redirect any of the output.**
 
 ./script.sh < name.txt
+ejecuta el script con lña cvariable q esta en name.txt
 
-35. Excellent. Run the same command, but redirect the stderr to stderr.txt.
+**35. Excellent. Run the same command, but redirect the stderr to stderr.txt.**
 
 ./script.sh < name.txt 2> stderr.txt
 
-36. Nice job! Run it again, redirect the stderr to the same place and the stdout to stdout.txt
+**36. Nice job! Run it again, redirect the stderr to the same place and the stdout to stdout.txt**
 
 ./script.sh < name.txt 2> stderr.txt > stdout.txt
+lo mismo con el error en el stderr.txt y la salida en stdout.txt
 
-37.  You have two kitty_ipsum files. Find out what's in them by printing the first one in the terminal with cat.
+**37.  You have two kitty_ipsum files. Find out what's in them by printing the first one in the terminal with cat.**
 
-cat kitty_ipsum_1.txt
+`cat kitty_ipsum_1.txt`
+desplega el texto del archivo
 
-38. It's some kitty ipsum. You may enjoy reading it 😄 Look at the second one with cat like you did this one.
+**38. It's some kitty ipsum. You may enjoy reading it 😄 Look at the second one with cat like you did this one.**
 
-cat kitty_ipsum_2.txt
+`cat kitty_ipsum_2.txt`
 
-39. You will write a small script to translate both of them into doggy ipsum. For now, you will learn some commands to figure out how. The first one is wc. It prints some info about a file. It can take a file as an argument like the cat command. Use it to see what it shows you about your kitty_ipsum_1.txt file.
+desplega el texto del archivo
 
-wc kitty_ipsum_1.txt
+**39. You will write a small script to translate both of them into doggy ipsum. For now, you will learn some commands to figure out how. The first one is wc. It prints some info about a file. It can take a file as an argument like the cat command. Use it to see what it shows you about your kitty_ipsum_1.txt file.**
 
-40. Not quite sure what all those numbers mean. Check the manual of the wc command to see if you can find out more.
+`wc kitty_ipsum_1.txt`
+wc (word count) sirve para contar el número de líneas, palabras y caracteres en un archivo. 
 
-man wc
+**ouput:**
+27  332 1744 kitty_ipsum_1.txt
 
-41. wc stands for word count. It showed you how many lines were in the file, how many words, and how many bytes. Use the -l flag to only output how many lines are in the file. Don't do any redirecting of input or output.
+lineas palabras bytes nombre_archivo
 
-wc -l kitty_ipsum_1.txt 
+**Notas:**
+-l para mostrar solo el número de líneas.
+-w para mostrar solo el número de palabras.
+-c para mostrar solo el número de bytes.
+
+**40. Not quite sure what all those numbers mean. Check the manual of the wc command to see if you can find out more.**
+
+`man wc`
+
+man -- manual de usuario
+wc --  sirve para contar elementos específicos en un archivo como: Número de líneas (-l), Número de palabras (-w), Número de bytes (-c).
+
+**41. wc stands for word count. It showed you how many lines were in the file, how many words, and how many bytes. Use the -l flag to only output how many lines are in the file. Don't do any redirecting of input or output.**
+
+`wc -l kitty_ipsum_1.txt `
+l: Número de líneas
 
 42. The file has 27 lines. Check how many words are in the file.
 
 wc -w kitty_ipsum_1.txt
+Número de palabras (-w)
 
 43. 332 words are in the kitty_ipsum_1.txt file. Lastly, check how many characters it has.
 
