@@ -59,30 +59,35 @@ Se llena el espacio
 **12. Use echo to print the variable you just created.**
 
 `echo $NAME`
+imprime el valor de la variable name que llenamos con juan
 
-13. Use echo to print the NAME variable again, but redirect the stdout to stdout.txt so it overwrites the file.
+**13. Use echo to print the NAME variable again, but redirect the stdout to stdout.txt so it overwrites the file.**
 
-echo $NAME > stdout.txt
+`echo $NAME > stdout.txt`
+manda el valor de la variable NAME al archivo stdout.txt
 
-14. Use echo and redirection to put the text freeCodeCamp in a name.txt file for some more testing. Remember that it will create the file if it doesn't exist.
+**14. Use echo and redirection to put the text freeCodeCamp in a name.txt file for some more testing. Remember that it will create the file if it doesn't exist.**
 
-echo freeCodeCamp > name.txt
+`echo freeCodeCamp > name.txt`
+imprime el texto freeCodeCamp  en el archivo name.txt
 
-15. Just like you can redirect output, you can redirect stdin as well. Here's an example: <command> < <filename_for_stdin>. Use the read command to assign the NAME variable to the contents of name.txt by redirecting the stdin.
+**15. Just like you can redirect output, you can redirect stdin as well. Here's an example: <command> < <filename_for_stdin>. Use the read command to assign the NAME variable to the contents of name.txt by redirecting the stdin.**
 
-read NAME < name.txt
+`read NAME < name.txt`
+imprime la variable NAME en el archivo name.txt
 
-16. stdin was pointing to the name.txt file this time. Use echo to print the NAME variable again.
+**16. stdin was pointing to the name.txt file this time. Use echo to print the NAME variable again.**
 
-echo $NAME
+`echo $NAME`
+impirme la variable NAME que en este caso es freeCodeCamp
 
-17. Now the variable is set to the content of the file, which was the input. Another way to set the stdin is by using the pipe (|). It will use the output from one command as input for another. Here's an example: <command_1> | <command_2>. This will take the stdout from command_1 and use it as the stdin for command_2. Use this method to echo your name and pipe the output into the read command which reads your name into the NAME variable. 
+**17. Now the variable is set to the content of the file, which was the input. Another way to set the stdin is by using the pipe (|). It will use the output from one command as input for another. Here's an example: <command_1> | <command_2>. This will take the stdout from command_1 and use it as the stdin for command_2. Use this method to echo your name and pipe the output into the read command which reads your name into the NAME variable.**
 
-echo Juan | read NAME
+`echo Juan | read NAME`
 
-18. Use echo to print the variable again.
+**18. Use echo to print the variable again.**
 
-echo $NAME
+`echo $NAME`
 
 19. It worked, but it doesn't look like it. When you used the pipe (|) to set the input for read, it ran the command in a subshell or subprocess. Basically, another terminal instance within the one you see. The variable was set in there and didn't affect the one you had previously set. cat is another command that takes input. Enter it in the terminal.
 
