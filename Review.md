@@ -1,60 +1,64 @@
-organize and abstract by topic: 1. The first thing you need to do is start the terminal. Do that by clicking the "hamburger" menu at the top left of the screen, going to the "terminal" section, and clicking "new terminal". Once you open a new one, type echo hello bash into the terminal and press enter.
+**1. The first thing you need to do is start the terminal. Do that by clicking the "hamburger" menu at the top left of the screen, going to the "terminal" section, and clicking "new terminal". Once you open a new one, type echo hello bash into the terminal and press enter.**
 
-echo hello bash
+`echo hello bash`
 Abrir nuevo terrminal bash y escribir 
 
-2. The command you just entered printed to the terminal. You can redirect that output to a file using >. Here’s an example: <command> > <filename>. Enter the same command but redirect the output into stdout.txt.
+**2. The command you just entered printed to the terminal. You can redirect that output to a file using >. Here’s an example: <command> > <filename>. Enter the same command but redirect the output into stdout.txt.**
 
-echo hello bash > stdout.txt
- Imprimimos el texto hello bash en el archivo de texto stdout.txt el cual va a crear.
+`echo hello bash > stdout.txt`
+Crea el archivo stdout.txt con el texto hello bash
 
-3. A stdout.txt file was created. You should take a look at it. Instead of printing hello bash to the terminal, it redirected the output to the file. A single > will create or overwrite the file. Use the same command with >> to append to the file.
+**3. A stdout.txt file was created. You should take a look at it. Instead of printing hello bash to the terminal, it redirected the output to the file. A single > will create or overwrite the file. Use the same command with >> to append to the file.**
 
- echo hello bash >> stdout.txt 
+ `echo hello bash >> stdout.txt`
 
-el cual vuelva a escribir la palaba debajo
+Este simbol >> reescribe abajo el texto: hello bash
 
 **Nota:**  El operador >> redirige y añade la salida del comando anterior al archivo stdout.txt. Si el archivo no existe, lo crea; si ya existe, agrega el texto al final sin sobreescribir el contenido existente.
 
-4. Take a look at the file again. The output of echo hello bash was added to it. Use the command with one > again to overwrite the file.
+**4. Take a look at the file again. The output of echo hello bash was added to it. Use the command with one > again to overwrite the file.**
 
-echo hello bash > stdout.txt 
+`echo hello bash > stdout.txt`
 escribe la palabra de nuevo borrando todo
 
-5. Take a look at the file. It was overwritten with the output of the command. Enter > stdout.txt in the terminal to redirect nothing into the file. Effectively, emptying it.
+**5. Take a look at the file. It was overwritten with the output of the command. Enter `> stdout.txt` in the terminal to redirect nothing into the file. Effectively, emptying it.**
 
-> stdout.txt 
+`> stdout.txt` 
 borra todo
 
-6. Next, enter bad_command in the terminal to see what happens. You will get an error.
+**6. Next, enter bad_command in the terminal to see what happens. You will get an error.**
 
 bad_command 
 no existe el comando 
 
-7. Enter the same command, but try to redirect the output to stderr.txt using >.
+**7. Enter the same command, but try to redirect the output to stderr.txt using >.**
 
 bad_command > stderr.txt 
 crea archivo en blanco
 
-8. There’s two types of output, stdout (standard out) for when a command is successful, and stderr (standard error) for when it’s not. Both of these will print to the terminal by default. bad_command was not a valid command, so it printed to stderr. You can redirect stderr with 2>. Enter the same command but redirect stderr to stderr.txt
+**8. There’s two types of output, stdout (standard out) for when a command is successful, and stderr (standard error) for when it’s not. Both of these will print to the terminal by default. bad_command was not a valid command, so it printed to stderr. You can redirect stderr with 2>. Enter the same command but redirect stderr to stderr.txt**
 
  bad_command 2> stderr.txt
+ Esto escribe la slida del error en el arhivo stderr.txt El numero dos es el q se usa para redirigir
 
-9. Take a look at the stderr.txt file. The error was redirected to the file and nothing printed in the terminal. You used 2> to redirect stderr. Similarily, you can use 1> to redirect stdout. Enter echo hello bash again and use it to redirect stdout to the stdout.txt file.
+**9. Take a look at the stderr.txt file. The error was redirected to the file and nothing printed in the terminal. You used 2> to redirect stderr. Similarily, you can use 1> to redirect stdout. Enter echo hello bash again and use it to redirect stdout to the stdout.txt file.**
 
-echo hello bash 1> stdout.txt
+`echo hello bash 1> stdout.txt`
+el 1 tb redirige pero el texto
 
-10. stdout and stderr are for output. stdin (standard in) is the third thing commands can use and is for getting input. The default is the keyboard. Enter read NAME in the terminal to see a command that uses stdin.
+**10. stdout and stderr are for output. stdin (standard in) is the third thing commands can use and is for getting input. The default is the keyboard. Enter read NAME in the terminal to see a command that uses stdin.**
 
-read NAME
+`read NAME`
+Manda a leer la variable name y pide q se llene el espacio
 
-11. The read command is looking at stdin for where to get input, which is pointing to the keyboard. Type your name and press enter.
+**11. The read command is looking at stdin for where to get input, which is pointing to the keyboard. Type your name and press enter.**
 
-Juan
+`Juan`
+Se llena el espacio
 
-12. Use echo to print the variable you just created.
+**12. Use echo to print the variable you just created.**
 
-echo $NAME
+`echo $NAME`
 
 13. Use echo to print the NAME variable again, but redirect the stdout to stdout.txt so it overwrites the file.
 
