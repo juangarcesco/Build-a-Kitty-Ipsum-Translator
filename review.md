@@ -84,10 +84,12 @@ impirme la variable NAME que en este caso es freeCodeCamp
 **17. Now the variable is set to the content of the file, which was the input. Another way to set the stdin is by using the pipe (|). It will use the output from one command as input for another. Here's an example: <command_1> | <command_2>. This will take the stdout from command_1 and use it as the stdin for command_2. Use this method to echo your name and pipe the output into the read command which reads your name into the NAME variable.**
 
 `echo Juan | read NAME`
+Imprime la cadena "Juan" en la terminaL y toma esa salida y la asigna a la variable NAME.
 
 **18. Use echo to print the variable again.**
 
 `echo $NAME`
+imprime la variabla name que en este caso es Juan
 
 19. It worked, but it doesn't look like it. When you used the pipe (|) to set the input for read, it ran the command in a subshell or subprocess. Basically, another terminal instance within the one you see. The variable was set in there and didn't affect the one you had previously set. cat is another command that takes input. Enter it in the terminal.
 
