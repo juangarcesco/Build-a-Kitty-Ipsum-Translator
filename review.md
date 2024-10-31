@@ -237,26 +237,26 @@ l: Número de líneas
 
 **42. The file has 27 lines. Check how many words are in the file.**
 
-wc -w kitty_ipsum_1.txt
+`wc -w kitty_ipsum_1.txt`
 Número de palabras (-w)
 
 **43. 332 words are in the kitty_ipsum_1.txt file. Lastly, check how many characters it has.**
 
-wc -m kitty_ipsum_1.txt
+`wc -m kitty_ipsum_1.txt`
 -m numero de caracteres
 
 **44. Use the command without any flags to see if the numbers are the same.**
 
-wc kitty_ipsum_1.txt
+`wc kitty_ipsum_1.txt`
 muestra todo
 
 **45. That shows the byte count instead of the character count. Some characters must be more than one byte. Use cat to pipe the content of the file as the input of the wc command to see if the output is the same.**
 
-cat kitty_ipsum_1.txt | wc
+`cat kitty_ipsum_1.txt | wc`
 
 **46. It looks like the way you give input to a command may affect the output. It only printed the numbers that time and not the filename. Try using redirection as the input with the same file and command to see what that outputs.**
 
-wc < kitty_ipsum_1.txt
+`wc < kitty_ipsum_1.txt`
 
 ------------------------------------------------------------------------------------------------------------------
 
@@ -316,15 +316,15 @@ kitty_ipsum_1.txt: Es el archivo donde se realiza la búsqueda.
 
 56. That's a lot of options. Use grep to search for the meow pattern in the same file, but add that --color flag to see if it's a little more helpful.
 
-grep --color 'meow' kitty_ipsum_1.txt
+`grep --color 'meow' kitty_ipsum_1.txt`
 
 57. That’s better. Add the flag to show all the line numbers with the command.
 
-grep --color -n 'meow' kitty_ipsum_1.txt
+`grep --color -n 'meow' kitty_ipsum_1.txt`
 
 58. It's showing the line number of each match it found. grep can use regular expressions, too. Enter the previous command, but change the pattern to meow[a-z]* to see all words that start with meow.
 
-grep --color -n 'meow[a-z]*' kitty_ipsum_1.txt
+`grep --color -n 'meow[a-z]*' kitty_ipsum_1.txt`
 
 59. Looking at the output, you can see that it matched meow and meowzer, instead of just meow. Use the echo command and redirection to append the text Number of times meow or meowzer appears:, with a new line in front of it, to the kitty_info.txt file.
 
@@ -332,51 +332,53 @@ grep --color -n 'meow[a-z]*' kitty_ipsum_1.txt
 
 60. So how can you find how many times those two words appear? Use grep to find the meow[a-z]* pattern in the file again to see how many times they appear. Add the --color flag to the command.
 
-grep --color 'meow[a-z]*' kitty_ipsum_1.txt
+`grep --color 'meow[a-z]*' kitty_ipsum_1.txt`
 
 61. It looks like seven, but how can you get a count of that from the command line to append to the info file for the next piece of information? grep has a -c flag to give you a count. Enter the last command but use that instead of the --color flag.
 
-grep -c 'meow[a-z]*' kitty_ipsum_1.txt
+`grep -c 'meow[a-z]*' kitty_ipsum_1.txt`
 
 62. That gave you a count of the number lines that the pattern occurred on. Check the manual of grep to see if there's a way to find a count of all the words matched.
 
-man grep 
+`man grep`
 
 63. It doesn't look like that's an option. But there is a -o flag that says it will put the matches on their own lines. Try that one with that command instead of the -c flag.
 
-grep -o 'meow[a-z]*' kitty_ipsum_1.txt
+`grep -o 'meow[a-z]*' kitty_ipsum_1.txt`
 
 64. That gave you each match on it's own line. You can use the wc command again to get a count of the lines to find out how many matches there are. Pipe the output of the last command into the wc command and use the flag for showing the line count.
 
-grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l
+`grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l`
 
 65. Awesome. wc counted the lines in the output of the grep. That should be the count for how many times those words appear. Enter the same command but append the number to the kitty_info.txt file.
 
-grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l >> kitty_info.txt
+`grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l >> kitty_info.txt`
 
 66. Append the text Lines that they appear on: to the kitty_info.txt file. Use the echo command with the -e flag again and put a new line in front of the text.
 
-echo -e "\nLines that they appear on:" >> kitty_info.txt
+`echo -e "\nLines that they appear on:" >> kitty_info.txt`
 
 67. There was a -n flag with grep to get line numbers. Use it to check the kitty_ipsum_1.txt file for the meow[a-z]* pattern again.
 
-grep -n 'meow[a-z]*' kitty_ipsum_1.tx
+`grep -n 'meow[a-z]*' kitty_ipsum_1.tx`
 
 68. Check the grep manual to see if there's a way to get just the line numbers.
 
-man grep
+`man grep`
 
 69. There doesn't appear to be a way to just get the line numbers. There's a sed command for replacing text that might work. First, some practice. Use cat to print the name.txt file in the terminal. It should still say freeCodeCamp.
 
-cat name.txt
+`cat name.txt`
+
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 70. sed can replace text like this: sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>. By default, it won't replace the text in the file. It will output it to stdout. Use it to replace r with 2 in the name.txt file and the output prints to the terminal.
 
-sed 's/r/2/' name.txt
+`sed 's/r/2/' name.txt`
 
 71. You can see that it replaced the r with a 2 in freeCodeCamp. Use it again to replace free with f233 in the same way.
 
-sed 's/free/f233/' name.txt
+`sed 's/free/f233/' name.txt`
 
 72. Try it again, replacing freecodecamp with f233C0d3C@mp.
 
