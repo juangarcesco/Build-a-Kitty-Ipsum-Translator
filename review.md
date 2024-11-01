@@ -300,13 +300,17 @@ imprime el numero de palabras en el archivo kitty_ipsum_1.txt
 -------------------------------------------------------------------------------------------------------------------------
 
 **54. grep is a command for searching for patterns in text. You can use it like this: grep '<pattern>' <filename>. Use it to search for the pattern meow in the kitty_ipsum_1.txt file.**
-grep 'meow' kitty_ipsum_1.txt
 
 `grep 'meow' kitty_ipsum_1.txt`
 
+busca todas las líneas en el archivo kitty_ipsum_1.txt que contengan la palabra "meow". 
+
 **Notas:**
+
 grep: Es el comando para buscar texto en archivos.
+
 'meow': Es el término de búsqueda; en este caso, busca la palabra o cadena "meow".
+
 kitty_ipsum_1.txt: Es el archivo donde se realiza la búsqueda.
 
 
@@ -314,27 +318,37 @@ kitty_ipsum_1.txt: Es el archivo donde se realiza la búsqueda.
 
 `man grep`
 
-56. That's a lot of options. Use grep to search for the meow pattern in the same file, but add that --color flag to see if it's a little more helpful.
+tambien se puede usar : `grep --help`
+
+**56. That's a lot of options. Use grep to search for the meow pattern in the same file, but add that --color flag to see if it's a little more helpful.**
 
 `grep --color 'meow' kitty_ipsum_1.txt`
 
-57. That’s better. Add the flag to show all the line numbers with the command.
+Colorea todas las palabras 'meow' en el testo
+
+**57. That’s better. Add the flag to show all the line numbers with the command.**
 
 `grep --color -n 'meow' kitty_ipsum_1.txt`
+muestra la coincidencia y muestra en color y la linea donde esta ubicada la coincidencia
 
-58. It's showing the line number of each match it found. grep can use regular expressions, too. Enter the previous command, but change the pattern to meow[a-z]* to see all words that start with meow.
+
+***58. It's showing the line number of each match it found. grep can use regular expressions, too. Enter the previous command, but change the pattern to meow[a-z]* to see all words that start with meow.**
 
 `grep --color -n 'meow[a-z]*' kitty_ipsum_1.txt`
 
-59. Looking at the output, you can see that it matched meow and meowzer, instead of just meow. Use the echo command and redirection to append the text Number of times meow or meowzer appears:, with a new line in front of it, to the kitty_info.txt file.
+ver todas las palabras que empiezan por meow
 
- echo -e "\nNumber of times meow or meowzer appears:" >> kitty_info.txt
+**59. Looking at the output, you can see that it matched meow and meowzer, instead of just meow. Use the echo command and redirection to append the text Number of times meow or meowzer appears:, with a new line in front of it, to the kitty_info.txt file.**
+
+ `echo -e "\nNumber of times meow or meowzer appears:" >> kitty_info.txt`
 
 60. So how can you find how many times those two words appear? Use grep to find the meow[a-z]* pattern in the file again to see how many times they appear. Add the --color flag to the command.
 
 `grep --color 'meow[a-z]*' kitty_ipsum_1.txt`
 
-61. It looks like seven, but how can you get a count of that from the command line to append to the info file for the next piece of information? grep has a -c flag to give you a count. Enter the last command but use that instead of the --color flag.
+Este comando agregará al final de kitty_info.txt una línea en blanco, seguida del texto "Number of times meow or meowzer appears:".
+
+**61. It looks like seven, but how can you get a count of that from the command line to append to the info file for the next piece of information? grep has a -c flag to give you a count. Enter the last command but use that instead of the --color flag.**
 
 `grep -c 'meow[a-z]*' kitty_ipsum_1.txt`
 
