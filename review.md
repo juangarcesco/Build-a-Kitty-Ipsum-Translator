@@ -404,7 +404,9 @@ ve el contenido del archivo name
 
 `sed 's/r/2/' name.txt`
 
-71. You can see that it replaced the r with a 2 in freeCodeCamp. Use it again to replace free with f233 in the same way.
+Esta línea de sed reemplaza la primera aparición de la letra "r" en cada línea de name.txt por el número "2".
+
+**71. You can see that it replaced the r with a 2 in freeCodeCamp. Use it again to replace free with f233 in the same way.**
 
 `sed 's/free/f233/' name.txt`
 
