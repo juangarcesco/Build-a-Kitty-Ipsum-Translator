@@ -410,278 +410,278 @@ Esta línea de sed reemplaza la primera aparición de la letra "r" en cada líne
 
 `sed 's/free/f233/' name.txt`
 
-72. Try it again, replacing freecodecamp with f233C0d3C@mp.
+**72. Try it again, replacing freecodecamp with f233C0d3C@mp.**
 
 sed 's/freecodecamp/f233C0d3C@mp/' name.txt
 
-73. Nothing was replaced that time. It didn't find the freecodecamp text you tried to replace because the case of a few letters didn't match. You can add regex flags after the last / in the sed argument. A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern. Enter the same command but add the correct regex flag to ignore the case.
+**73. Nothing was replaced that time. It didn't find the freecodecamp text you tried to replace because the case of a few letters didn't match. You can add regex flags after the last / in the sed argument. A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern. Enter the same command but add the correct regex flag to ignore the case.**
 
 sed 's/freecodecamp/f233C0d3C@mp/i' name.txt
 
-74. It worked that time since it wasn't required to match the case. As with any command, the input can be redirected. Use the same sed replacement and file but redirect the input this time.
+**74. It worked that time since it wasn't required to match the case. As with any command, the input can be redirected. Use the same sed replacement and file but redirect the input this time.**
 
 sed 's/freecodecamp/f233C0d3C@mp/i' < name.txt
 
-75. The method of input didn't affect the output. Use the cat and pipe method this time to set the input for the sed command, replacing the same text.
+**75. The method of input didn't affect the output. Use the cat and pipe method this time to set the input for the sed command, replacing the same text.**
 
 cat name.txt | sed 's/freecodecamp/f233C0d3C@mp/i'
 
-76. Back to the task at hand. You want to add the line numbers asked for in the kitty_info.txt file. Use grep with the flag to show line numbers to find the meow[a-z]* pattern in the kitty_ipsum_1.txt file again.
+**76. Back to the task at hand. You want to add the line numbers asked for in the kitty_info.txt file. Use grep with the flag to show line numbers to find the meow[a-z]* pattern in the kitty_ipsum_1.txt file again.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt
 
-77. You can use sed to change each line number in that output. Start by entering the last command and pipe the output into sed that replaces [0-9] with 1.
+**77. You can use sed to change each line number in that output. Start by entering the last command and pipe the output into sed that replaces [0-9] with 1.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]/1/'
 
-78. That matched the first digit it found on each line and replaced it with 1. Enter the same command but change the matching pattern to [0-9]+ to match one or more numbers.
+**78. That matched the first digit it found on each line and replaced it with 1. Enter the same command but change the matching pattern to [0-9]+ to match one or more numbers.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'
 
-79. That didn't replace anything. Check the manual of sed quick to see if there's anything to help.
+**79. That didn't replace anything. Check the manual of sed quick to see if there's anything to help.**
 
 man sed
 
-80. Looks like there's a lot of options with sed as well. There's a flag to use extended regular expressions. Add it to that previous command that didn't work so it recognizes the + in your pattern. The previous command was grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'.
+**80. Looks like there's a lot of options with sed as well. There's a flag to use extended regular expressions. Add it to that previous command that didn't work so it recognizes the + in your pattern. The previous command was grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed -E 's/[0-9]+/1/' in the terminal
 
-81. It worked that time. It replaced all the numbers at the start with a 1. Next, you will use a capture group in the regex to capture the numbers so you can use them in the replacement area. Enter the same command but use s/([0-9]+)/\1/ with sed to capture the numbers at the start. It will replace them with themselves for now.
+**81. It worked that time. It replaced all the numbers at the start with a 1. Next, you will use a capture group in the regex to capture the numbers so you can use them in the replacement area. Enter the same command but use s/([0-9]+)/\1/ with sed to capture the numbers at the start. It will replace them with themselves for now.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed -E 's/([0-9]+)/\1/'
 
-82. That matched all the numbers and replaced them with the same numbers. All you need to do is match everything else on each line and replace it with only the numbers. Add .* at the end of the sed matching pattern so it matches everything, captures the numbers, and replaces everything with the captured numbers.
+**82. That matched all the numbers and replaced them with the same numbers. All you need to do is match everything else on each line and replace it with only the numbers. Add .* at the end of the sed matching pattern so it matches everything, captures the numbers, and replaces everything with the captured numbers.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed -E 's/([0-9]+).*/\1/'
 
-83. There's your list of numbers for the kitty_info.txt file. Enter the same command and append the list of numbers to it.
+**83. There's your list of numbers for the kitty_info.txt file. Enter the same command and append the list of numbers to it.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed -E 's/([0-9]+).*/\1/' >> kitty_info.txt
 
-84. Take a look at the file. Hopefully it doesn't look too messy. You can reset a lesson at any time if it doesn't look right, or if you accidentally change something in one of the other files. There's one more group of words to find info on for this file. Use grep with the --color flag to see all the words that start with cat in the same file. Use a similar pattern that you used to find words starting with meow.
+**84. Take a look at the file. Hopefully it doesn't look too messy. You can reset a lesson at any time if it doesn't look right, or if you accidentally change something in one of the other files. There's one more group of words to find info on for this file. Use grep with the --color flag to see all the words that start with cat in the same file. Use a similar pattern that you used to find words starting with meow.**
 
 grep --color 'cat[a-z]*' kitty_ipsum_1.txt
 
-85. There's three variations of words starting with cat. Use echo with the -e flag to append Number of times cat, cats, or catnip appears: to the kitty_info.txt file. Put a new line at the beginning of the text like the other lines.
+**85. There's three variations of words starting with cat. Use echo with the -e flag to append Number of times cat, cats, or catnip appears: to the kitty_info.txt file. Put a new line at the beginning of the text like the other lines.**
 
 echo -e "\nNumber of times cat, cats, or catnip appears:" >> kitty_info.txt
 
-86. You will want to find the number of times those words appear again. First, use grep with the correct flag to put all the matches of the cat[a-z]* pattern on their own line.
+**86. You will want to find the number of times those words appear again. First, use grep with the correct flag to put all the matches of the cat[a-z]* pattern on their own line.**
 
 grep -o 'cat[a-z]*' kitty_ipsum_1.txt
 
-87. Enter the same command and pipe the output into the command that outputs the count of those lines.
+**87. Enter the same command and pipe the output into the command that outputs the count of those lines.**
 
 grep -o 'cat[a-z]*' kitty_ipsum_1.txt | wc -l
 
-88. That's a count of how many times cat, cats, or catnip appears in the file. Enter the same command and append the count to the kitty_info.txt file.
+**88. That's a count of how many times cat, cats, or catnip appears in the file. Enter the same command and append the count to the kitty_info.txt file.**
 
 grep -o 'cat[a-z]*' kitty_ipsum_1.txt | wc -l >> kitty_info.txt
 
-89. Next, use echo to add the text Lines that they appear on: to the kitty_info.txt file again. Place a new line in front of the text like before.
+**89. Next, use echo to add the text Lines that they appear on: to the kitty_info.txt file again. Place a new line in front of the text like before.**
 
 echo -e "\nLines that they appear on:" >> kitty_info.txt
 
-90. The process to add the lines to the file will be the same as you did before. Start by using grep to match the cat words in the file and showing the line numbers with the output.
+**90. The process to add the lines to the file will be the same as you did before. Start by using grep to match the cat words in the file and showing the line numbers with the output.**
 
 grep -n 'cat[a-z]*' kitty_ipsum_1.txt
 
-91. That shows you the line numbers and text. You will have to use sed again to extract only the line numbers. Pipe the output of the last command into sed to do that. As a reminder, the sed pattern was 's/([0-9]+).*/\1/'.
+**91. That shows you the line numbers and text. You will have to use sed again to extract only the line numbers. Pipe the output of the last command into sed to do that. As a reminder, the sed pattern was 's/([0-9]+).*/\1/'.**
 
 grep -n 'cat[a-z]*' kitty_ipsum_1.txt | sed -E 's/([0-9]+).*/\1/'
 
-92. Awesome. Enter the last command and append the line numbers to the kitty_info.txt file.
+**92. Awesome. Enter the last command and append the line numbers to the kitty_info.txt file.**
 
 grep -n 'cat[a-z]*' kitty_ipsum_1.txt | sed -E 's/([0-9]+).*/\1/' >> kitty_info.txt
 
-93. Hopefully your info file is looking good. Next, you want to do the same thing for the kitty_ipsum_2.txt file. Using echo in the terminal, append ~~ kitty_ipsum_2.txt info ~~ to the kitty_info.txt file. Put two new lines in front of the text this time.
+**93. Hopefully your info file is looking good. Next, you want to do the same thing for the kitty_ipsum_2.txt file. Using echo in the terminal, append ~~ kitty_ipsum_2.txt info ~~ to the kitty_info.txt file. Put two new lines in front of the text this time.**
 
 echo -e "\n\n~~ kitty_ipsum_2.txt info ~~" >> kitty_info.txt
 
-94. The first piece of info you want to know is the number of lines in the file. Use the terminal to append Number of lines: to the file with a new line in front.
+**94. The first piece of info you want to know is the number of lines in the file. Use the terminal to append Number of lines: to the file with a new line in front.**
 
 echo -e "\nNumber of lines:" >> kitty_info.txt
 
-95. Use cat with the pipe method to append the info to the kitty_info.txt file that it is asking for.
+**95. Use cat with the pipe method to append the info to the kitty_info.txt file that it is asking for.**
 
 cat kitty_ipsum_2.txt | wc -l >> kitty_info.txt
 
-96. Nice job! Next, use the terminal to append Number of words: to the kitty_info.txt file. Put a new line in front of the text again.
+**96. Nice job! Next, use the terminal to append Number of words: to the kitty_info.txt file. Put a new line in front of the text again.**
 
 echo -e "\nNumber of words:" >> kitty_info.txt
 
-97. Append the suggested info the kitty_info.txt file. Use redirection instead of the pipe method for the input this time.
+**97. Append the suggested info the kitty_info.txt file. Use redirection instead of the pipe method for the input this time.**
 
 wc -w < kitty_ipsum_2.txt >> kitty_info.txt
 
-98. Next, is the character count. Append Number of characters: to the file with a new line in front of the text. Use the method you have been using.
+**98. Next, is the character count. Append Number of characters: to the file with a new line in front of the text. Use the method you have been using.**
 
 echo -e "\nNumber of characters:" >> kitty_info.txt
 
-99. Using the pipe or input redirection method, append the character count of kitty_ipsum_2.txt to the kitty_info.txt file.
+**99. Using the pipe or input redirection method, append the character count of kitty_ipsum_2.txt to the kitty_info.txt file.**
 
 wc -m < kitty_ipsum_2.txt >> kitty_info.txt
 
-100. Excellent. Next, use grep to see how many variations of meow there are in kitty_ipsum_2.txt. Use the same pattern you used before and add the flag to show colors so it's easier to see.
+**100. Excellent. Next, use grep to see how many variations of meow there are in kitty_ipsum_2.txt. Use the same pattern you used before and add the flag to show colors so it's easier to see.**
 
 grep --color 'meow[a-z]*' kitty_ipsum_2.txt
 
-101. It's the same variations as the other file. Append Number of times meow or meowzer appears: to the kitty_info.txt file with a new line in front of it like before.
+**101. It's the same variations as the other file. Append Number of times meow or meowzer appears: to the kitty_info.txt file with a new line in front of it like before.**
 
 echo -e "\nNumber of times meow or meowzer appears:" >> kitty_info.txt
 
-102. Use grep and wc in the terminal to append the suggested number to the kitty_info.txt file.
+**102. Use grep and wc in the terminal to append the suggested number to the kitty_info.txt file.**
 
 grep -o 'meow[a-z]*' kitty_ipsum_2.txt | wc -l >> kitty_info.txt
 
-103. Next, use the terminal to append Lines that they appear on: to the kitty_info.txt file with a new line in front of the text.
+**103. Next, use the terminal to append Lines that they appear on: to the kitty_info.txt file with a new line in front of the text.**
 
 echo -e "\nLines that they appear on:" >> kitty_info.txt
 
-104. Use grep and sed in the terminal to append the suggested line numbers to the kitty_info.txt file.
+**104. Use grep and sed in the terminal to append the suggested line numbers to the kitty_info.txt file.**
 
 grep -n 'meow[a-z]*' kitty_ipsum_2.txt | sed -E 's/([0-9]+).*/\1/' >> kitty_info.txt
 
-105. Use grep to see how many variations of cat there are in kitty_ipsum_2.txt. Use the same pattern you used before and include the flag to show colors so it's easier to see.
+**105. Use grep to see how many variations of cat there are in kitty_ipsum_2.txt. Use the same pattern you used before and include the flag to show colors so it's easier to see.**
 
 grep --color 'cat[a-z]*' kitty_ipsum_2.txt
 
-105. Same variations as the other kitty ipsum file. Append Number of times cat, cats, or catnip appears: to the kitty_info.txt file. Use the method you have been using.
+**105. Same variations as the other kitty ipsum file. Append Number of times cat, cats, or catnip appears: to the kitty_info.txt file. Use the method you have been using.**
 
 echo -e "\nNumber of times cat, cats, or catnip appears:" >> kitty_info.txt
 
-106. Use grep and wc in the terminal to append the suggested info to kitty_info.txt
+**106. Use grep and wc in the terminal to append the suggested info to kitty_info.txt**
 
 grep -o 'cat[a-z]*' kitty_ipsum_2.txt | wc -l >> kitty_info.txt
 
-107. One more. Append Lines that they appear on: to it like you did for the others.
+**107. One more. Append Lines that they appear on: to it like you did for the others.**
 
 echo -e "\nLines that they appear on:" >> kitty_info.txt
 
-108. Use grep and sed in the terminal to append the suggested numbers to the kitty_info.txt file.
+**108. Use grep and sed in the terminal to append the suggested numbers to the kitty_info.txt file.**
 
 grep -n 'cat[a-z]*' kitty_ipsum_2.txt | sed -E 's/([0-9]+).*/\1/' >> kitty_info.txt
 
-109. The kitty_info file is done and it has some information about the two ipsum files. Next, you will create a small script to translate both them into doggy ipsum. It will be as simple as replacing all the cat references with similar words for dogs. In the terminal, use touch to create translate.sh.
+**109. The kitty_info file is done and it has some information about the two ipsum files. Next, you will create a small script to translate both them into doggy ipsum. It will be as simple as replacing all the cat references with similar words for dogs. In the terminal, use touch to create translate.sh.**
 
 touch translate.sh
 
-110. Give your new script executable permissions so you can run it in the terminal.
+**110. Give your new script executable permissions so you can run it in the terminal.**
 
 chmod +x translate.sh
 
-111. Add a shebang to the script that uses bash like you did for the other script you made.
+**111. Add a shebang to the script that uses bash like you did for the other script you made.**
 #!/bin/bash
 
-112. The script will take a file as input that can be passed as an argument or read from stdin. Below the shebang, use cat to print the content of the first argument passed to the script.
+**112. The script will take a file as input that can be passed as an argument or read from stdin. Below the shebang, use cat to print the content of the first argument passed to the script.**
 
 cat $1
 
-113. Run the script and use the first kitty ipsum file as an argument to see if it's working.
+**113. Run the script and use the first kitty ipsum file as an argument to see if it's working.**
 
 ./translate.sh kitty_ipsum_1.txt
 
-114. Try the same command using redirection to print the file.
+**114. Try the same command using redirection to print the file.**
 
 ./translate.sh < kitty_ipsum_1.txt
 
-115. Looks like that is working. Try the cat and pipe method.
+**115. Looks like that is working. Try the cat and pipe method.**
 
 cat kitty_ipsum_1.txt | ./translate.sh
 
-116. Using any of those three methods as input is working. Time to start replacing some of the text with doggy ipsum. In your script file, pipe the input into a sed that replaces catnip with dogchow.
+**116. Using any of those three methods as input is working. Time to start replacing some of the text with doggy ipsum. In your script file, pipe the input into a sed that replaces catnip with dogchow.**
 
 cat $1 | sed 's/catnip/dogchow/'
 
-117. Run the script passing the first kitty ipsum file as a argument to see if it's working.
+**117. Run the script passing the first kitty ipsum file as a argument to see if it's working.**
 
 ./translate.sh kitty_ipsum_1.txt
 
-118. If you look, you can find dogchow in there so it's probably working. To make sure pipe the results of that into a grep command that searches for dogchow. Output the results in color.
+**118. If you look, you can find dogchow in there so it's probably working. To make sure pipe the results of that into a grep command that searches for dogchow. Output the results in color.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color 'dogchow'
 
-119. It's showing three places catnip was replaced with dogchow. To make sure you got them all, enter the previous command and search for catnip instead.
+**119. It's showing three places catnip was replaced with dogchow. To make sure you got them all, enter the previous command and search for catnip instead.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color 'catnip'
 
-120. It didn't output anything, so it must be replacing all the instances of catnip. You can replace many patterns using sed like this: sed 's/<pattern_1>/<replacement_1>/; s/<pattern_2>/<replacement_2>/'. Note that you need the semi-colon between the two replacement patterns and they both need to be wrapped in the quotes. In your script, add another pattern to the sed command that replaces cat with dog.
+**120. It didn't output anything, so it must be replacing all the instances of catnip. You can replace many patterns using sed like this: sed 's/<pattern_1>/<replacement_1>/; s/<pattern_2>/<replacement_2>/'. Note that you need the semi-colon between the two replacement patterns and they both need to be wrapped in the quotes. In your script, add another pattern to the sed command that replaces cat with dog.**
 
 cat $1 | sed 's/catnip/dogchow/; s/cat/dog/'
 
-121. Now, it should replace catnip with dogchow and cat with dog. Use the script to translate the first ipsum file again. Search the results with grep for any words that start with dog. Part of that search pattern should be [a-z]*. Make sure to show the results in color.
+**121. Now, it should replace catnip with dogchow and cat with dog. Use the script to translate the first ipsum file again. Search the results with grep for any words that start with dog. Part of that search pattern should be [a-z]*. Make sure to show the results in color.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color 'dog[a-z]*'
 
-122. As expected, it replaced instances of cat with dog. Enter the same command, but search for anything starting with cat to make sure it replaced them all.
+**122. As expected, it replaced instances of cat with dog. Enter the same command, but search for anything starting with cat to make sure it replaced them all.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color 'cat[a-z]*'
 
-123. It didn't find any so it must be replacing them all. You added two patterns as part of the sed in your script. Add a third that replaces all meow words with woof.
+**123. It didn't find any so it must be replacing them all. You added two patterns as part of the sed in your script. Add a third that replaces all meow words with woof.**
 
 cat $1 | sed 's/catnip/dogchow/; s/cat/dog/; s/meow/woof/'
 
-124. Using your script, translate the first ipsum file again. Check the results with grep for words that start with dog or woof. Here's an example of the search pattern you want: grep '<dog_words>|<woof_words>'. To view "dog words", you would use dog[a-z]*. Be sure to view the result in color.
+**124. Using your script, translate the first ipsum file again. Check the results with grep for words that start with dog or woof. Here's an example of the search pattern you want: grep '<dog_words>|<woof_words>'. To view "dog words", you would use dog[a-z]*. Be sure to view the result in color.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color 'dog[a-z]*|woof[a-z]*'
 
-125. That didn't work. Enter the same command, but add the flag to use extended regular expressions to the grep search so it recognizes the |.
+**125. That didn't work. Enter the same command, but add the flag to use extended regular expressions to the grep search so it recognizes the |.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color -E 'dog[a-z]*|woof[a-z]*'
 
-126. If you look closely, you can see that the meow part of meowzer on that one line didn't get replaced with woof. grep only matched the first instance of meow it found on that line. Add the "global" regex flag to all three patterns of the sed command in your script so it will replace all instances of any of the words.
+**126. If you look closely, you can see that the meow part of meowzer on that one line didn't get replaced with woof. grep only matched the first instance of meow it found on that line. Add the "global" regex flag to all three patterns of the sed command in your script so it will replace all instances of any of the words.**
 
 cat $1 | sed 's/catnip/dogchow/g; s/cat/dog/g; s/meow/woof/g'
 
-127. Enter the same command to translate the first ipsum file and see the matches of all words starting with dog or woof to see if that worked.
+**127. Enter the same command to translate the first ipsum file and see the matches of all words starting with dog or woof to see if that worked.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color -E 'dog[a-z]*|woof[a-z]*'
 
-128. 127. Enter the same command to translate the first ipsum file and see the matches of all words starting with dog or woof to see if that worked.
+**128. 127. Enter the same command to translate the first ipsum file and see the matches of all words starting with dog or woof to see if that worked.**
 
 cat $1 | sed -E 's/catnip/dogchow/g; s/cat/dog/g; s/meow|meowzer/woof/g'
 
-129. Now it should replace either of those two words with woof. Check it again with that command you entered before that searches for dog or woof words.
+**129. Now it should replace either of those two words with woof. Check it again with that command you entered before that searches for dog or woof words.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color -E 'dog[a-z]*|woof[a-z]*'
 
-130. It replaced meowzer that time. To be sure it replaced all the words in the file, enter the same command but check for meow or cat words in the same way.
+**130. It replaced meowzer that time. To be sure it replaced all the words in the file, enter the same command but check for meow or cat words in the same way.**
 
 ./translate.sh kitty_ipsum_1.txt | grep --color -E 'meow[a-z]*|cat[a-z]*'
 
-131. No results means it didn't find any matches for cat or meow words after being translated. Check the second kitty ipsum file for the same pattern to make sure it's replacing all those words.
+**131. No results means it didn't find any matches for cat or meow words after being translated. Check the second kitty ipsum file for the same pattern to make sure it's replacing all those words.**
 
 ./translate.sh kitty_ipsum_2.txt | grep --color -E 'meow[a-z]*|cat[a-z]*'
 
-132. Okay, your script is finished. Translate the kitty_ipsum_1.txt file, using the filename as an argument, and put the output into a new doggy_ipsum_1.txt file.
+**132. Okay, your script is finished. Translate the kitty_ipsum_1.txt file, using the filename as an argument, and put the output into a new doggy_ipsum_1.txt file.**
 
 ./translate.sh kitty_ipsum_1.txt > doggy_ipsum_1.txt
 
-133. Use cat to print the new file to the terminal.
+**133. Use cat to print the new file to the terminal.**
 
 cat doggy_ipsum_1.txt
 
-134. It looks good 👍 diff is a command to view the difference between two files. You can use it like this: diff <file_1> <file_2>. Use it to view the difference between the kitty_ipsum_1 and doggy_ipsum_1 files.
+**134. It looks good 👍 diff is a command to view the difference between two files. You can use it like this: diff <file_1> <file_2>. Use it to view the difference between the kitty_ipsum_1 and doggy_ipsum_1 files.**
 
 diff kitty_ipsum_1.txt doggy_ipsum_1.txt
 
-135. It may look a little cryptic, but it's showing the lines that don't match in the two files. Check the manual of diff to see if there's any way to make it prettier.
+**135. It may look a little cryptic, but it's showing the lines that don't match in the two files. Check the manual of diff to see if there's any way to make it prettier.**
 
 man diff
 
-136. Use the flag to show the diff of the same two files in color.
+**136. Use the flag to show the diff of the same two files in color.**
 
 diff --color kitty_ipsum_1.txt doggy_ipsum_1.txt
 
-137. That's better. The red lines are lines that aren't in the second file, and the green lines are what they were replaced with. The line numbers that were changed are above each section. Translate your second kitty ipsum file and redirect the output into doggy_ipsum_2.txt.
+**137. That's better. The red lines are lines that aren't in the second file, and the green lines are what they were replaced with. The line numbers that were changed are above each section. Translate your second kitty ipsum file and redirect the output into doggy_ipsum_2.txt.**
 
 ./translate.sh kitty_ipsum_2.txt > doggy_ipsum_2.txt
 
-138. View the content of your new file with cat
+**138. View the content of your new file with cat**
 
 cat doggy_ipsum_2.txt
 
-139. Lastly, view the diff of the two files in color again.
+**139. Lastly, view the diff of the two files in color again.**
 
 diff --color kitty_ipsum_2.txt doggy_ipsum_2.txt
 
