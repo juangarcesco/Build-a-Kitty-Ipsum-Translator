@@ -324,7 +324,7 @@ tambien se puede usar : `grep --help`
 
 `grep --color 'meow' kitty_ipsum_1.txt`
 
-Colorea todas las palabras 'meow' en el testo
+Colorea todas las palabras 'meow' en el texto
 
 **57. That’s better. Add the flag to show all the line numbers with the command.**
 
@@ -341,52 +341,66 @@ ver todas las palabras que empiezan por meow
 **59. Looking at the output, you can see that it matched meow and meowzer, instead of just meow. Use the echo command and redirection to append the text Number of times meow or meowzer appears:, with a new line in front of it, to the kitty_info.txt file.**
 
  `echo -e "\nNumber of times meow or meowzer appears:" >> kitty_info.txt`
+Este comando agregará al final de kitty_info.txt una línea en blanco, seguida del texto "Number of times meow or meowzer appears:".
 
-60. So how can you find how many times those two words appear? Use grep to find the meow[a-z]* pattern in the file again to see how many times they appear. Add the --color flag to the command.
+***60. So how can you find how many times those two words appear? Use grep to find the meow[a-z]* pattern in the file again to see how many times they appear. Add the --color flag to the command.**
 
 `grep --color 'meow[a-z]*' kitty_ipsum_1.txt`
+Colorea todas las veces que hay una palabra que empieze por meow
 
-Este comando agregará al final de kitty_info.txt una línea en blanco, seguida del texto "Number of times meow or meowzer appears:".
 
 **61. It looks like seven, but how can you get a count of that from the command line to append to the info file for the next piece of information? grep has a -c flag to give you a count. Enter the last command but use that instead of the --color flag.**
 
 `grep -c 'meow[a-z]*' kitty_ipsum_1.txt`
 
-62. That gave you a count of the number lines that the pattern occurred on. Check the manual of grep to see if there's a way to find a count of all the words matched.
+**62. That gave you a count of the number lines that the pattern occurred on. Check the manual of grep to see if there's a way to find a count of all the words matched.**
 
 `man grep`
+nota: ese comando no aparece 
 
-63. It doesn't look like that's an option. But there is a -o flag that says it will put the matches on their own lines. Try that one with that command instead of the -c flag.
+**63. It doesn't look like that's an option. But there is a -o flag that says it will put the matches on their own lines. Try that one with that command instead of the -c flag.**
 
 `grep -o 'meow[a-z]*' kitty_ipsum_1.txt`
 
-64. That gave you each match on it's own line. You can use the wc command again to get a count of the lines to find out how many matches there are. Pipe the output of the last command into the wc command and use the flag for showing the line count.
+o: Solo muestra las coincidencias exactas, no la línea completa.
+
+**64. That gave you each match on it's own line. You can use the wc command again to get a count of the lines to find out how many matches there are. Pipe the output of the last command into the wc command and use the flag for showing the line count.**
 
 `grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l`
 
-65. Awesome. wc counted the lines in the output of the grep. That should be the count for how many times those words appear. Enter the same command but append the number to the kitty_info.txt file.
+grep busca y wc (word count) cuenta las coincidencias
+
+
+**65. Awesome. wc counted the lines in the output of the grep. That should be the count for how many times those words appear. Enter the same command but append the number to the kitty_info.txt file.**
 
 `grep -o 'meow[a-z]*' kitty_ipsum_1.txt | wc -l >> kitty_info.txt`
 
-66. Append the text Lines that they appear on: to the kitty_info.txt file. Use the echo command with the -e flag again and put a new line in front of the text.
+**66. Append the text Lines that they appear on: to the kitty_info.txt file. Use the echo command with the -e flag again and put a new line in front of the text.**
 
 `echo -e "\nLines that they appear on:" >> kitty_info.txt`
+coloca una linea en kitty_info.txt
 
-67. There was a -n flag with grep to get line numbers. Use it to check the kitty_ipsum_1.txt file for the meow[a-z]* pattern again.
 
-`grep -n 'meow[a-z]*' kitty_ipsum_1.tx`
+***67. There was a -n flag with grep to get line numbers. Use it to check the kitty_ipsum_1.txt file for the meow[a-z]* pattern again.**
 
-68. Check the grep manual to see if there's a way to get just the line numbers.
+`grep -n 'meow[a-z]*' kitty_ipsum_1.txt`
+
+La salida mostrará el número de línea seguido del texto coincidente.
+
+**68. Check the grep manual to see if there's a way to get just the line numbers.**
 
 `man grep`
+man grep no funciona en vsc se usa grep -help
 
-69. There doesn't appear to be a way to just get the line numbers. There's a sed command for replacing text that might work. First, some practice. Use cat to print the name.txt file in the terminal. It should still say freeCodeCamp.
+**69. There doesn't appear to be a way to just get the line numbers. There's a sed command for replacing text that might work. First, some practice. Use cat to print the name.txt file in the terminal. It should still say freeCodeCamp.**
 
 `cat name.txt`
 
+ve el contenido del archivo name
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-70. sed can replace text like this: sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>. By default, it won't replace the text in the file. It will output it to stdout. Use it to replace r with 2 in the name.txt file and the output prints to the terminal.
+**70. sed can replace text like this: sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename>. By default, it won't replace the text in the file. It will output it to stdout. Use it to replace r with 2 in the name.txt file and the output prints to the terminal.**
 
 `sed 's/r/2/' name.txt`
 
