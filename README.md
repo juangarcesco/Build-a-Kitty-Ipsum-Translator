@@ -410,37 +410,54 @@ Esta línea de sed reemplaza la primera aparición de la letra "r" en cada líne
 
 `sed 's/free/f233/' name.txt`
 
+Esta línea reemplazará la primera aparición de la palabra "free" por "f233" en cada línea del archivo name.txt y mostrará el resultado en la salida estándar (normalmente la terminal). Si deseas que el archivo se modifique directamente, necesitarías agregar la opción -i para editar el archivo in situ, así: sed -i 's/free/f233/' name.txt.
+
 **72. Try it again, replacing freecodecamp with f233C0d3C@mp.**
 
-sed 's/freecodecamp/f233C0d3C@mp/' name.txt
+`sed 's/freecodecamp/f233C0d3C@mp/' name.txt`
+Esta línea reemplaza todas las ocurrencias de la palabra "freecodecamp" por "f233C0d3C@mp" en el archivo name.txt
+
 
 **73. Nothing was replaced that time. It didn't find the freecodecamp text you tried to replace because the case of a few letters didn't match. You can add regex flags after the last / in the sed argument. A g, for global, would replace all instances of a matched pattern, or an i to ignore the case of the pattern. Enter the same command but add the correct regex flag to ignore the case.**
 
-sed 's/freecodecamp/f233C0d3C@mp/i' name.txt
+`sed 's/freecodecamp/f233C0d3C@mp/i' name.txt`
+
+Esta línea de código reemplaza cualquier ocurrencia de "freecodecamp" (sin importar mayúsculas o minúsculas) en el archivo name.txt por f233C0d3C@mp
+
 
 **74. It worked that time since it wasn't required to match the case. As with any command, the input can be redirected. Use the same sed replacement and file but redirect the input this time.**
 
-sed 's/freecodecamp/f233C0d3C@mp/i' < name.txt
+`sed 's/freecodecamp/f233C0d3C@mp/i' < name.txt`
+
+Este comando muestra el resultado en la terminal sin modificar name.txt
 
 **75. The method of input didn't affect the output. Use the cat and pipe method this time to set the input for the sed command, replacing the same text.**
 
 cat name.txt | sed 's/freecodecamp/f233C0d3C@mp/i'
+ este comando imprime el contenido de name.txt en la terminal con el texto reemplazado, pero sin modificar el archivo original. Para ver el resultado en un archivo, tendrías que redirigir la salida a un nuevo archivo o usar sed directamente en el archivo sin cat.
 
-**76. Back to the task at hand. You want to add the line numbers asked for in the kitty_info.txt file. Use grep with the flag to show line numbers to find the meow[a-z]* pattern in the kitty_ipsum_1.txt file again.**
+***76. Back to the task at hand. You want to add the line numbers asked for in the kitty_info.txt file. Use grep with the flag to show line numbers to find the meow[a-z]* pattern in the kitty_ipsum_1.txt file again.**
 
-grep -n 'meow[a-z]*' kitty_ipsum_1.txt
+`grep -n 'meow[a-z]*' kitty_ipsum_1.txt`
+
+este comando busca líneas en kitty_ipsum_1.txt que contengan "meow" seguido de cualquier combinación de letras minúsculas y muestra esas líneas con sus respectivos números
+
 
 **77. You can use sed to change each line number in that output. Start by entering the last command and pipe the output into sed that replaces [0-9] with 1.**
 
-grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]/1/'
+`grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]/1/'
+
+ este comando reemplaza el primer dígito encontrado en cada línea de la salida de grep por 1
 
 **78. That matched the first digit it found on each line and replaced it with 1. Enter the same command but change the matching pattern to [0-9]+ to match one or more numbers.**
 
-grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'
+`grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'`
+
+Este comando busca líneas en kitty_ipsum_1.txt que contengan palabras que comiencen con "meow", muestra esas líneas con el número de línea, y luego reemplaza el número de línea con 1
 
 **79. That didn't replace anything. Check the manual of sed quick to see if there's anything to help.**
 
-man sed
+`man sed`
 
 **80. Looks like there's a lot of options with sed as well. There's a flag to use extended regular expressions. Add it to that previous command that didn't work so it recognizes the + in your pattern. The previous command was grep -n 'meow[a-z]*' kitty_ipsum_1.txt | sed 's/[0-9]+/1/'.**
 
@@ -466,7 +483,7 @@ grep --color 'cat[a-z]*' kitty_ipsum_1.txt
 
 echo -e "\nNumber of times cat, cats, or catnip appears:" >> kitty_info.txt
 
-**86. You will want to find the number of times those words appear again. First, use grep with the correct flag to put all the matches of the cat[a-z]* pattern on their own line.**
+***86. You will want to find the number of times those words appear again. First, use grep with the correct flag to put all the matches of the cat[a-z]* pattern on their own line.**
 
 grep -o 'cat[a-z]*' kitty_ipsum_1.txt
 
